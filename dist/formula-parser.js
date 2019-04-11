@@ -11054,9 +11054,6 @@ var Parser = function (_Emitter) {
         result = '';
       } else {
         result = this.parser.parse(expression);
-        variables = this.parser.yy.variables.filter(function (x) {
-          return _this2.variables[x] !== null && _this2.variables[x] !== undefined;
-        });
       }
     } catch (ex) {
       var message = (0, _error2['default'])(ex.message);
@@ -11071,8 +11068,10 @@ var Parser = function (_Emitter) {
     if (result instanceof Error) {
       error = (0, _error2['default'])(result.message) || (0, _error2['default'])(_error.ERROR);
       result = null;
-      variables = [];
     }
+    variables = this.parser.yy.variables.filter(function (x) {
+      return _this2.variables[x] !== null && _this2.variables[x] !== undefined;
+    });
 
     return {
       error: error,

@@ -50,7 +50,6 @@ class Parser extends Emitter {
         result = '';
       } else {
         result = this.parser.parse(expression);
-        variables = this.parser.yy.variables.filter((x) => this.variables[x] !== null && this.variables[x] !== undefined);
       }
     } catch (ex) {
       const message = errorParser(ex.message);
@@ -65,8 +64,8 @@ class Parser extends Emitter {
     if (result instanceof Error) {
       error = errorParser(result.message) || errorParser(ERROR);
       result = null;
-      variables = [];
     }
+    variables = this.parser.yy.variables.filter((x) => this.variables[x] !== null && this.variables[x] !== undefined);
 
     return {
       error,
