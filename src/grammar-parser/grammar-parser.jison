@@ -13,8 +13,8 @@ if (!('variables' in yy)) {
 [A-Za-z]{1,}[A-Za-z_0-9\.]+(?=[(])                                                              {return 'FUNCTION';}
 '#'[A-Z0-9\/]+('!'|'?')?                                                                        {return 'ERROR';}
 [A-Za-z\.]+(?=[(])                                                                              {return 'FUNCTION';}
-[A-Za-z]{1,}[A-Za-z_0-9]+                                                                       {if (yy.variables.indexOf(yytext) === -1) { yy.variables.push(yytext); } return 'VARIABLE';}
-[A-Za-z_]+                                                                                      {if (yy.variables.indexOf(yytext) === -1) { yy.variables.push(yytext); } return 'VARIABLE';}
+[A-Za-z]{1,}[A-Za-z_0-9]+                                                                       {console.log('VAR1', yytext); if (yy.variables.indexOf(yytext) === -1) { yy.variables.push(yytext); } return 'VARIABLE';}
+[A-Za-z_]+                                                                                      {console.log('VAR2', yytext); if (yy.variables.indexOf(yytext) === -1) { yy.variables.push(yytext); } return 'VARIABLE';}
 [0-9]+                                                                                          {return 'NUMBER';}
 '['(.*)?']'                                                                                     {return 'ARRAY';}
 "&"                                                                                             {return '&';}
@@ -150,7 +150,6 @@ expseq
   | ARRAY {
       var result = [];
       var arr = eval("[" + yytext + "]");
-      console.log('expression ARRAY', yytext);
 
       arr.forEach(function(item) {
         result.push(item);
@@ -173,7 +172,6 @@ variableSequence
       $$ = [$1];
     }
   | variableSequence DECIMAL VARIABLE {
-      console.log('variableSequence DECIMAL VARIABLE', yytext);
       $$ = (Array.isArray($1) ? $1 : [$1]);
       $$.push($3);
     }

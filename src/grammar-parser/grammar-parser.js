@@ -214,7 +214,6 @@ case 26:
 
       var result = [];
       var arr = eval("[" + yytext + "]");
-      console.log('expression ARRAY', yytext);
 
       arr.forEach(function(item) {
         result.push(item);
@@ -231,7 +230,6 @@ case 27: case 28:
 break;
 case 30:
 
-      console.log('variableSequence DECIMAL VARIABLE', yytext);
       this.$ = (Array.isArray($$[$0-2]) ? $$[$0-2] : [$$[$0-2]]);
       this.$.push($$[$0]);
     
@@ -852,9 +850,9 @@ case 4:return 30;
 break;
 case 5:return 21;
 break;
-case 6:if (yy.variables.indexOf(yy_.yytext) === -1) { yy.variables.push(yy_.yytext); } return 26;
+case 6:console.log('VAR1', yy_.yytext); if (yy.variables.indexOf(yy_.yytext) === -1) { yy.variables.push(yy_.yytext); } return 26;
 break;
-case 7:if (yy.variables.indexOf(yy_.yytext) === -1) { yy.variables.push(yy_.yytext); } return 26;
+case 7:console.log('VAR2', yy_.yytext); if (yy.variables.indexOf(yy_.yytext) === -1) { yy.variables.push(yy_.yytext); } return 26;
 break;
 case 8:return 28;
 break;
