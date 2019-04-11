@@ -14,9 +14,6 @@ const config = {
       },
     ]
   },
-  node: {
-    fs: 'empty'
-  },
   output: {
     library: 'formulaParser',
     libraryTarget: 'umd'
