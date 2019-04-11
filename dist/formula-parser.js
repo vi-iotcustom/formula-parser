@@ -11047,7 +11047,6 @@ var Parser = function (_Emitter) {
 
     var result = null;
     var error = null;
-    var variables = [];
 
     try {
       if (expression === '') {
@@ -11069,14 +11068,13 @@ var Parser = function (_Emitter) {
       error = (0, _error2['default'])(result.message) || (0, _error2['default'])(_error.ERROR);
       result = null;
     }
-    variables = this.parser.yy.variables.filter(function (x) {
-      return _this2.variables[x] !== null && _this2.variables[x] !== undefined;
-    });
 
     return {
       error: error,
       result: result,
-      variables: variables
+      variables: this.parser.yy.variables.filter(function (x) {
+        return _this2.variables[x] !== null && _this2.variables[x] !== undefined;
+      })
     };
   };
 
@@ -14745,9 +14743,7 @@ stateStackSize:function stateStackSize() {
     },
 options: {},
 performAction: function anonymous(yy,yy_,$avoiding_name_collisions,YY_START) {
-if (!('variables' in yy)) {
   yy.variables = [];
-}
 
 var YYSTATE=YY_START;
 switch($avoiding_name_collisions) {

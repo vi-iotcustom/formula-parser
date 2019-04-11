@@ -43,7 +43,6 @@ class Parser extends Emitter {
   parse(expression) {
     let result = null;
     let error = null;
-    let variables = [];
 
     try {
       if (expression === '') {
@@ -65,12 +64,11 @@ class Parser extends Emitter {
       error = errorParser(result.message) || errorParser(ERROR);
       result = null;
     }
-    variables = this.parser.yy.variables.filter((x) => this.variables[x] !== null && this.variables[x] !== undefined);
 
     return {
       error,
       result,
-      variables,
+      variables: this.parser.yy.variables.filter((x) => this.variables[x] !== null && this.variables[x] !== undefined),
     };
   }
 

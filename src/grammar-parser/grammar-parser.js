@@ -840,9 +840,7 @@ stateStackSize:function stateStackSize() {
     },
 options: {},
 performAction: function anonymous(yy,yy_,$avoiding_name_collisions,YY_START) {
-if (!('variables' in yy)) {
   yy.variables = [];
-}
 
 var YYSTATE=YY_START;
 switch($avoiding_name_collisions) {
