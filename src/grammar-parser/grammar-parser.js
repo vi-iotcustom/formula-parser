@@ -205,7 +205,7 @@ case 22:
       this.$ = yy.callFunction($$[$0-3], $$[$0-1]);
     
 break;
-case 25: case 29:
+case 25:
 
       this.$ = [$$[$0]];
     
@@ -214,7 +214,6 @@ case 26:
 
       var result = [];
       var arr = eval("[" + yytext + "]");
-      yy.variables.push(yytext);
 
       arr.forEach(function(item) {
         result.push(item);
@@ -227,6 +226,12 @@ case 27: case 28:
 
       $$[$0-2].push($$[$0]);
       this.$ = $$[$0-2];
+    
+break;
+case 29:
+
+      this.$ = [$$[$0]];
+      yy.variables.push(yytext);
     
 break;
 case 30:

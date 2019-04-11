@@ -150,7 +150,6 @@ expseq
   | ARRAY {
       var result = [];
       var arr = eval("[" + yytext + "]");
-      yy.variables.push(yytext);
 
       arr.forEach(function(item) {
         result.push(item);
@@ -171,6 +170,7 @@ expseq
 variableSequence
   : VARIABLE {
       $$ = [$1];
+      yy.variables.push(yytext);
     }
   | variableSequence DECIMAL VARIABLE {
       $$ = (Array.isArray($1) ? $1 : [$1]);
