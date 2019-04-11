@@ -50,7 +50,7 @@ class Parser extends Emitter {
         result = '';
       } else {
         result = this.parser.parse(expression);
-        variables = this.parser.yy.variables.filter((x) => !!this.variables[x]);
+        variables = this.parser.yy.variables.filter((x) => this.variables[x] !== null && this.variables[x] !== undefined);
       }
     } catch (ex) {
       const message = errorParser(ex.message);
