@@ -23,6 +23,7 @@ class Parser extends Emitter {
       callFunction: (name, params) => this._callFunction(name, params),
       cellValue: (value) => this._callCellValue(value),
       rangeValue: (start, end) => this._callRangeValue(start, end),
+      variables: [],
     };
     this.variables = Object.create(null);
     this.functions = Object.create(null);
@@ -42,12 +43,14 @@ class Parser extends Emitter {
   parse(expression) {
     let result = null;
     let error = null;
+    let variables = [];
 
     try {
       if (expression === '') {
         result = '';
       } else {
         result = this.parser.parse(expression);
+        variables = this.parser.yy.variables;
       }
     } catch (ex) {
       const message = errorParser(ex.message);
@@ -62,11 +65,13 @@ class Parser extends Emitter {
     if (result instanceof Error) {
       error = errorParser(result.message) || errorParser(ERROR);
       result = null;
+      variables = [];
     }
 
     return {
       error,
       result,
+      variables,
     };
   }
 
