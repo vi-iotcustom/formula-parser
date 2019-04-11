@@ -2,7 +2,9 @@
 /* lexical grammar */
 %lex
 %{
+if (!('variables' in yy)) {
   yy.variables = [];
+}
 %}
 %%
 \s+                                                                                             {/* skip whitespace */}
