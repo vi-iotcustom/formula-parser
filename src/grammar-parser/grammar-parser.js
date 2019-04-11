@@ -214,6 +214,7 @@ case 26:
 
       var result = [];
       var arr = eval("[" + yytext + "]");
+      yy.variables.push(yytext);
 
       arr.forEach(function(item) {
         result.push(item);
@@ -832,6 +833,10 @@ stateStackSize:function stateStackSize() {
     },
 options: {},
 performAction: function anonymous(yy,yy_,$avoiding_name_collisions,YY_START) {
+if (!('variables' in yy)) {
+  yy.variables = [];
+}
+
 var YYSTATE=YY_START;
 switch($avoiding_name_collisions) {
 case 0:/* skip whitespace */
@@ -846,9 +851,9 @@ case 4:return 30;
 break;
 case 5:return 21;
 break;
-case 6:yylval.str=strdup(yy_.yytext); return 26;
+case 6:return 26;
 break;
-case 7:yylval.str=strdup(yy_.yytext); return 26;
+case 7:return 26;
 break;
 case 8:return 28;
 break;

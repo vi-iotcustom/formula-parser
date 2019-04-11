@@ -1,6 +1,11 @@
 /* description: Parses end evaluates mathematical expressions. */
 /* lexical grammar */
 %lex
+%{
+if (!('variables' in yy)) {
+  yy.variables = [];
+}
+%}
 %%
 \s+                                                                                             {/* skip whitespace */}
 '"'("\\"["]|[^"])*'"'                                                                           {return 'STRING';}
@@ -8,8 +13,8 @@
 [A-Za-z]{1,}[A-Za-z_0-9\.]+(?=[(])                                                              {return 'FUNCTION';}
 '#'[A-Z0-9\/]+('!'|'?')?                                                                        {return 'ERROR';}
 [A-Za-z\.]+(?=[(])                                                                              {return 'FUNCTION';}
-[A-Za-z]{1,}[A-Za-z_0-9]+                                                                       {yylval.str=strdup(yytext); return 'VARIABLE';}
-[A-Za-z_]+                                                                                      {yylval.str=strdup(yytext); return 'VARIABLE';}
+[A-Za-z]{1,}[A-Za-z_0-9]+                                                                       {return 'VARIABLE';}
+[A-Za-z_]+                                                                                      {return 'VARIABLE';}
 [0-9]+                                                                                          {return 'NUMBER';}
 '['(.*)?']'                                                                                     {return 'ARRAY';}
 "&"                                                                                             {return '&';}
@@ -145,6 +150,7 @@ expseq
   | ARRAY {
       var result = [];
       var arr = eval("[" + yytext + "]");
+      yy.variables.push(yytext);
 
       arr.forEach(function(item) {
         result.push(item);
