@@ -13,8 +13,8 @@ if (!('variables' in yy)) {
 [A-Za-z]{1,}[A-Za-z_0-9\.]+(?=[(])                                                              {return 'FUNCTION';}
 '#'[A-Z0-9\/]+('!'|'?')?                                                                        {return 'ERROR';}
 [A-Za-z\.]+(?=[(])                                                                              {return 'FUNCTION';}
-[A-Za-z]{1,}[A-Za-z_0-9]+                                                                       {console.log('VAR1', yytext); if (yy.variables.indexOf(yytext) === -1) { yy.variables.push(yytext); } return 'VARIABLE';}
-[A-Za-z_]+                                                                                      {console.log('VAR2', yytext); if (yy.variables.indexOf(yytext) === -1) { yy.variables.push(yytext); } return 'VARIABLE';}
+[A-Za-z]{1,}[A-Za-z_0-9]+                                                                       {return 'VARIABLE';}
+[A-Za-z_]+                                                                                      {return 'VARIABLE';}
 [0-9]+                                                                                          {return 'NUMBER';}
 '['(.*)?']'                                                                                     {return 'ARRAY';}
 "&"                                                                                             {return '&';}
@@ -170,6 +170,9 @@ expseq
 variableSequence
   : VARIABLE {
       $$ = [$1];
+      if (yy.variables.indexOf(yytext) === -1) {
+        yy.variables.push(yytext);
+      }
     }
   | variableSequence DECIMAL VARIABLE {
       $$ = (Array.isArray($1) ? $1 : [$1]);
