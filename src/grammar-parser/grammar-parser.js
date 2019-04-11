@@ -205,7 +205,7 @@ case 22:
       this.$ = yy.callFunction($$[$0-3], $$[$0-1]);
     
 break;
-case 25:
+case 25: case 29:
 
       this.$ = [$$[$0]];
     
@@ -226,12 +226,6 @@ case 27: case 28:
 
       $$[$0-2].push($$[$0]);
       this.$ = $$[$0-2];
-    
-break;
-case 29:
-
-      this.$ = [$$[$0]];
-      yy.variables.push(yytext);
     
 break;
 case 30:
@@ -856,9 +850,9 @@ case 4:return 30;
 break;
 case 5:return 21;
 break;
-case 6:return 26;
+case 6:yy.variables.push(yy_.yytext); return 26;
 break;
-case 7:return 26;
+case 7:yy.variables.push(yy_.yytext); return 26;
 break;
 case 8:return 28;
 break;
