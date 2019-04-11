@@ -8,8 +8,8 @@
 [A-Za-z]{1,}[A-Za-z_0-9\.]+(?=[(])                                                              {return 'FUNCTION';}
 '#'[A-Z0-9\/]+('!'|'?')?                                                                        {return 'ERROR';}
 [A-Za-z\.]+(?=[(])                                                                              {return 'FUNCTION';}
-[A-Za-z]{1,}[A-Za-z_0-9]+                                                                       {return 'VARIABLE';}
-[A-Za-z_]+                                                                                      {return 'VARIABLE';}
+[A-Za-z]{1,}[A-Za-z_0-9]+                                                                       {yylval.str=strdup(yytext); return 'VARIABLE';}
+[A-Za-z_]+                                                                                      {yylval.str=strdup(yytext); return 'VARIABLE';}
 [0-9]+                                                                                          {return 'NUMBER';}
 '['(.*)?']'                                                                                     {return 'ARRAY';}
 "&"                                                                                             {return '&';}
