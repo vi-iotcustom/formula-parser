@@ -66,6 +66,9 @@ expressions
 expression
   : variableSequence {
       $$ = yy.callVariable($1[0]);
+      if (yy.variables.indexOf(yytext) === -1) {
+        yy.variables.push(yytext);
+      }
     }
   | number {
       $$ = yy.toNumber($1);
@@ -170,9 +173,6 @@ expseq
 variableSequence
   : VARIABLE {
       $$ = [$1];
-      if (yy.variables.indexOf(yytext) === -1) {
-        yy.variables.push(yytext);
-      }
     }
   | variableSequence DECIMAL VARIABLE {
       $$ = (Array.isArray($1) ? $1 : [$1]);

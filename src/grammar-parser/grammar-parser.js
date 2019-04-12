@@ -91,6 +91,9 @@ break;
 case 2:
 
       this.$ = yy.callVariable($$[$0][0]);
+      if (yy.variables.indexOf(yytext) === -1) {
+        yy.variables.push(yytext);
+      }
     
 break;
 case 3:
@@ -205,7 +208,7 @@ case 22:
       this.$ = yy.callFunction($$[$0-3], $$[$0-1]);
     
 break;
-case 25:
+case 25: case 29:
 
       this.$ = [$$[$0]];
     
@@ -226,14 +229,6 @@ case 27: case 28:
 
       $$[$0-2].push($$[$0]);
       this.$ = $$[$0-2];
-    
-break;
-case 29:
-
-      this.$ = [$$[$0]];
-      if (yy.variables.indexOf(yytext) === -1) {
-        yy.variables.push(yytext);
-      }
     
 break;
 case 30:
