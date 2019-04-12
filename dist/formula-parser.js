@@ -11047,6 +11047,9 @@ var Parser = function (_Emitter) {
 
     var result = null;
     var error = null;
+    if (this.parser.yy && this.parser.yy.variables) {
+      this.parser.yy.variables = [];
+    }
 
     try {
       if (expression === '') {

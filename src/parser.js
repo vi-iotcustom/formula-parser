@@ -43,6 +43,9 @@ class Parser extends Emitter {
   parse(expression) {
     let result = null;
     let error = null;
+    if (this.parser.yy && this.parser.yy.variables) {
+      this.parser.yy.variables = [];
+    }
 
     try {
       if (expression === '') {
