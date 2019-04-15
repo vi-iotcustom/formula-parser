@@ -23,6 +23,7 @@ class Parser extends Emitter {
       callFunction: (name, params) => this._callFunction(name, params),
       cellValue: (value) => this._callCellValue(value),
       rangeValue: (start, end) => this._callRangeValue(start, end),
+      variables: [],
     };
     this.variables = Object.create(null);
     this.functions = Object.create(null);
@@ -42,6 +43,9 @@ class Parser extends Emitter {
   parse(expression) {
     let result = null;
     let error = null;
+    if (this.parser.yy && this.parser.yy.variables) {
+      this.parser.yy.variables = [];
+    }
 
     try {
       if (expression === '') {
@@ -67,6 +71,7 @@ class Parser extends Emitter {
     return {
       error,
       result,
+      variables: this.parser.yy.variables.filter((x) => this.variables[x] !== null && this.variables[x] !== undefined),
     };
   }
 
