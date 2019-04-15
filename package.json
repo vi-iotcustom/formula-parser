@@ -20,7 +20,7 @@
     "generate-parser": "cd src/grammar-parser && jison grammar-parser.jison",
     "release": "generate-release",
     "prepare": "npm run build",
-    "prepublish": "npm run clean && npm run check && npm run build && check-es3-syntax lib/ dist/ --kill --print"
+    "prepublishOnly": "npm run clean && npm run check && npm run build && check-es3-syntax lib/ dist/ --kill --print"
   },
   "repository": {
     "type": "git",
