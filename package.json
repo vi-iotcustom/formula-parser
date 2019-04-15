@@ -6,6 +6,9 @@
   "main": "lib/index.js",
   "module": "es/index.js",
   "jsnext:main": "es/index.js",
+  "config": {
+    "unsafe-perm":true
+  },
   "scripts": {
     "clean": "rimraf lib dist es coverage",
     "lint": "eslint src test",
