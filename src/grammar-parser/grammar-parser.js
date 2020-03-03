@@ -215,15 +215,8 @@ case 25: case 29:
 break;
 case 26:
 
-      var result = [];
-      var arr = eval("[" + yytext + "]");
+      this.$ = yy.trimEdges(yytext).split(',');
 
-      arr.forEach(function(item) {
-        result.push(item);
-      });
-
-      this.$ = result;
-    
 break;
 case 27: case 28:
 
@@ -927,7 +920,4 @@ if (typeof require !== 'undefined' && typeof exports !== 'undefined') {
 exports.parser = grammarParser;
 exports.Parser = grammarParser.Parser;
 exports.parse = function () { return grammarParser.parse.apply(grammarParser, arguments); };
-if (typeof module !== 'undefined' && require.main === module) {
-  exports.main(process.argv.slice(1));
-}
 }
