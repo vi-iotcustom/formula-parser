@@ -117,6 +117,22 @@ var Parser = function (_Emitter) {
   };
 
   /**
+   * Remove variable name from parser.
+   *
+   * @param {String} name Variable name.
+   * @returns {Parser}
+   */
+
+
+  Parser.prototype.removeVariable = function removeVariable(name) {
+    if (this.variables[name]) {
+      delete this.variables[name];
+    }
+
+    return this;
+  };
+
+  /**
    * Get variable name.
    *
    * @param {String} name Variable name.
